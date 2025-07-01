@@ -231,6 +231,9 @@ function sendWhatsApp() {
 
   var msg = `*Vehicle Service Booking*%0A👤 Name: ${name}%0A📱 Mobile: ${mobile}%0A🚘 Reg No: ${reg}%0A🚙 Model: ${model}%0A🔧 Service: ${service}%0A📍 Location: ${location}`;
   window.open(`https://wa.me/${phoneNumber}?text=${msg}`, "_blank");
+
+  // ✅ Reset form after submission
+  document.getElementById("serviceForm").reset();
 }
 </script>
 </body>
