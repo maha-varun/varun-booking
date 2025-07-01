@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maruti Suzuki - Varun Motors Service Booking</title>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
 <style>
 body {
   margin: 0;
@@ -14,14 +18,17 @@ body {
 header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   background: white;
   padding: 0.5em;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-header img {
+header img.center-logo {
+  height: 60px;
+}
+header img.side-logo {
   height: 40px;
-  max-width: 80px;
+  margin: 0 10px;
 }
 .advert {
   text-align: center;
@@ -33,28 +40,16 @@ header img {
   margin: 0.5em 0;
   font-size: 1.2em;
 }
-.carousel {
+.swiper {
+  width: 100%;
   max-width: 600px;
   margin: auto;
-  position: relative;
-  overflow: hidden;
   border-radius: 10px;
 }
-.carousel-track {
-  display: flex;
-  animation: slide 12s infinite;
-}
-.carousel-track img, .carousel-track video {
+.swiper-slide video, .swiper-slide img {
   width: 100%;
-  flex-shrink: 0;
-  object-fit: cover;
   height: 200px;
-}
-@keyframes slide {
-  0%, 20% { transform: translateX(0%); }
-  25%, 45% { transform: translateX(-100%); }
-  50%, 70% { transform: translateX(-200%); }
-  75%, 100% { transform: translateX(0%); }
+  object-fit: cover;
 }
 .container {
   max-width: 600px;
@@ -105,20 +100,31 @@ footer {
 <body>
 
 <header>
-  <img src="m.png" alt="Maruti Suzuki Logo">
-  <img src="a.jpg" alt="Varun A Logo">
-  <img src="n.webp" alt="Varun N Logo">
+  <img src="a.jpg" alt="Varun A Logo" class="side-logo">
+  <img src="m.png" alt="Maruti Suzuki Logo" class="center-logo">
+  <img src="n.webp" alt="Varun N Logo" class="side-logo">
 </header>
 
 <div class="advert">
   <h2>🚗✨ Introducing the New e-Vitara! ✨🚗</h2>
-  <div class="carousel">
-    <div class="carousel-track">
-      <video src="ev.mp4" muted autoplay loop></video>
-      <img src="1.webp" alt="e-Vitara Image 1">
-      <img src="2.jpg" alt="e-Vitara Image 2">
+
+  <!-- Swiper slider -->
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <video controls>
+          <source src="ev.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+      </div>
+      <div class="swiper-slide"><img src="1.webp" alt="e-Vitara 1"></div>
+      <div class="swiper-slide"><img src="2.jpg" alt="e-Vitara 2"></div>
     </div>
+    <!-- navigation arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
+
   <p style="max-width:600px; margin:auto; font-size:1em;">
     Experience the all-new electric Vitara! Eco-friendly 🌱, stylish 🏁, and packed with smart features.
   </p>
@@ -157,7 +163,6 @@ footer {
       <option>GAJUWAKA</option>
       <option>VISHAKHAPATNAM-2S(NEXA)</option>
       <option>VIZIANAGARAM-SRV</option>
-      <!-- Add the rest -->
     </datalist>
 
     <button type="button" onclick="sendWhatsApp()">
@@ -168,7 +173,18 @@ footer {
 
 <footer>© 2025 Varun Motors Pvt Ltd | Designed by Shareef</footer>
 
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
 <script>
+  var swiper = new Swiper('.swiper', {
+    loop: false, // stop auto loop
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
 function sendWhatsApp() {
   var name = document.getElementById("name").value;
   var mobile = document.getElementById("mobile").value;
