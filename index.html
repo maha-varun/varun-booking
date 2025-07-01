@@ -1,203 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maruti Suzuki - Varun Motors Service Booking</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: white;
-      padding: 1em;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    header img {
-      height: 50px;
-    }
-    header h1 {
-      font-size: 1.5em;
-      color: #e00000;
-      margin: 0;
-    }
-    .advert {
-      text-align: center;
-      padding: 2em 1em;
-      background: linear-gradient(135deg, #e00000, #ff7373);
-      color: white;
-    }
-    .advert h2 {
-      color: #fff; /* Make heading white for clarity */
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Add shadow to make text pop */
-    }
-    .advert video, .advert img {
-      width: 90%;
-      max-width: 600px;
-      margin: 1em auto;
-      border-radius: 12px;
-    }
-    .container {
-      max-width: 600px;
-      margin: 2em auto;
-      background: white;
-      padding: 2em;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    h2 {
-      text-align: center;
-      color: #e00000;
-      margin-bottom: 1em;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    label {
-      margin-bottom: 0.2em;
-      font-weight: 500;
-    }
-    input, select, textarea {
-      margin-bottom: 1em;
-      padding: 0.8em;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1em;
-    }
-    button {
-      background: #25D366;
-      color: white;
-      padding: 0.8em;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #128c7e;
-    }
-    button img {
-      height: 24px;
-      margin-right: 8px;
-    }
-    footer {
-      text-align: center;
-      padding: 1em;
-      font-size: 0.9em;
-      color: #555;
-      margin-top: 2em;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maruti Suzuki - Varun Motors Service Booking</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 0.5em 1em;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  header img {
+    max-height: 50px;
+    max-width: 80px;
+    height: auto;
+    width: auto;
+  }
+  header h1 {
+    font-size: 1.3em;
+    color: #e00000;
+    margin: 0;
+    text-align: center;
+    flex: 1;
+  }
+  .advert {
+    text-align: center;
+    padding: 1em;
+    background: linear-gradient(135deg, #e00000, #ff7373);
+    color: white;
+  }
+  .advert h2 {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  .carousel {
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 12px;
+    position: relative;
+  }
+  .slides {
+    display: flex;
+    width: 400%;
+    animation: slide 10s infinite;
+  }
+  .slides img, .slides video {
+    width: 100%;
+    flex-shrink: 0;
+  }
+  @keyframes slide {
+    0% { margin-left: 0; }
+    25% { margin-left: 0; }
+    30% { margin-left: -100%; }
+    55% { margin-left: -100%; }
+    60% { margin-left: -200%; }
+    85% { margin-left: -200%; }
+    90% { margin-left: -300%; }
+    100% { margin-left: -300%; }
+  }
+  .container {
+    max-width: 600px;
+    margin: 1em auto;
+    background: white;
+    padding: 1em;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  h2 {
+    text-align: center;
+    color: #e00000;
+    margin-bottom: 0.8em;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    margin-bottom: 0.2em;
+    font-weight: 500;
+  }
+  input, select {
+    margin-bottom: 1em;
+    padding: 0.7em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+  }
+  button {
+    background: #25D366;
+    color: white;
+    padding: 0.8em;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  button img {
+    height: 24px;
+    margin-right: 8px;
+  }
+  footer {
+    text-align: center;
+    padding: 0.8em;
+    font-size: 0.9em;
+    color: #555;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <img src="m.png" alt="Maruti Suzuki Logo">
-    <h1>Varun Motors</h1>
-    <div style="display:flex; gap:10px;">
-      <img src="a.jpg" alt="a.jpg">
-      <img src="n.webp" alt="n.webp">
+<header>
+  <img src="a.jpg" alt="Varun A Logo">
+  <h1>Varun Motors</h1>
+  <img src="n.webp" alt="Varun N Logo">
+</header>
+
+<div class="advert">
+  <h2>🚗✨ Introducing the New e-Vitara! ✨🚗</h2>
+  <div class="carousel">
+    <div class="slides">
+      <video src="ev.mp4" muted autoplay loop></video>
+      <img src="1.webp" alt="e-Vitara 1">
+      <img src="2.jpg" alt="e-Vitara 2">
+      <img src="m.png" alt="Maruti Logo"> <!-- filler to loop -->
     </div>
-  </header>
-
-  <div class="advert">
-    <h2>🚗✨ Introducing the New e-Vitara! ✨🚗</h2>
-    <video controls>
-      <source src="ev.mp4" type="video/mp4">
-      Your browser does not support video.
-    </video>
-    <div>
-      <img src="1.webp" alt="e-Vitara image 1">
-      <img src="2.jpg" alt="e-Vitara image 2">
-    </div>
-    <p style="max-width:600px; margin:auto; font-size:1.1em;">
-      Experience the future with the all-new electric Vitara! Eco-friendly 🌱, stylish 🏁, and packed with smart features to make every drive exciting and sustainable.
-    </p>
   </div>
+  <p style="max-width:600px; margin:auto; font-size:1.1em;">
+    Experience the all-new electric Vitara! Eco-friendly 🌱, stylish 🏁, and packed with smart features.
+  </p>
+</div>
 
-  <div class="container">
-    <h2>🛠️ Book Your Vehicle Service</h2>
-    <form id="serviceForm">
-      <label for="name">👤 Customer Name</label>
-      <input type="text" id="name" name="name" required>
+<div class="container">
+  <h2>🛠️ Book Your Vehicle Service</h2>
+  <form id="serviceForm">
+    <label for="name">👤 Customer Name</label>
+    <input type="text" id="name" required>
 
-      <label for="mobile">📱 Mobile Number *</label>
-      <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required placeholder="10-digit number">
+    <label for="mobile">📱 Mobile Number *</label>
+    <input type="tel" id="mobile" pattern="[0-9]{10}" required placeholder="10-digit number">
 
-      <label for="reg">🚘 Registration Number *</label>
-      <input type="text" id="reg" name="reg" required placeholder="e.g., AP01AB1234">
+    <label for="reg">🚘 Registration Number *</label>
+    <input type="text" id="reg" required placeholder="e.g., AP01AB1234">
 
-      <label for="model">🚙 Vehicle Model</label>
-      <input type="text" id="model" name="model" placeholder="e.g., Swift, Baleno">
+    <label for="model">🚙 Vehicle Model</label>
+    <input type="text" id="model" placeholder="e.g., Swift, Baleno">
 
-      <label for="service">🔧 Service Type</label>
-      <select id="service" name="service" required>
-        <option value="">Select</option>
-        <option>General Service</option>
-        <option>Free Service</option>
-        <option>Paid Service</option>
-        <option>Repair</option>
-        <option>Body Shop</option>
-      </select>
+    <label for="service">🔧 Service Type</label>
+    <select id="service" required>
+      <option value="">Select</option>
+      <option>General Service</option>
+      <option>Free Service</option>
+      <option>Paid Service</option>
+      <option>Repair</option>
+      <option>Body Shop</option>
+    </select>
 
-      <label for="location">📍 Location</label>
-      <input list="locations" id="location" name="location" required placeholder="Start typing...">
-      <datalist id="locations">
-        <option>SIRIPURAM</option>
-        <option>YENDADA-2S</option>
-        <option>GAJUWAKA</option>
-        <option>VISHAKHAPATNAM-2S(NEXA)</option>
-        <option>VISHAKHAPATNAM-SRV</option>
-        <option>VIZIANAGARAM-SRV</option>
-        <!-- keep the rest of your locations here -->
-      </datalist>
+    <label for="location">📍 Location</label>
+    <input list="locations" id="location" required placeholder="Start typing...">
+    <datalist id="locations">
+      <option>SIRIPURAM</option>
+      <option>YENDADA-2S</option>
+      <option>GAJUWAKA</option>
+      <option>VISHAKHAPATNAM-2S(NEXA)</option>
+      <option>VISHAKHAPATNAM-SRV</option>
+      <option>VIZIANAGARAM-SRV</option>
+      <!-- add others -->
+    </datalist>
 
-      <button type="button" onclick="sendWhatsApp()">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> Send to WhatsApp
-      </button>
-    </form>
-  </div>
+    <button type="button" onclick="sendWhatsApp()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"> Send to WhatsApp
+    </button>
+  </form>
+</div>
 
-  <footer>
-    © 2025 Varun Motors Pvt Ltd | Designed by Shareef
-  </footer>
+<footer>© 2025 Varun Motors Pvt Ltd | Designed by Shareef</footer>
 
-  <script>
-    function sendWhatsApp() {
-      var name = document.getElementById("name").value;
-      var mobile = document.getElementById("mobile").value;
-      var reg = document.getElementById("reg").value;
-      var model = document.getElementById("model").value;
-      var service = document.getElementById("service").value;
-      var location = document.getElementById("location").value.trim().toUpperCase();
+<script>
+function sendWhatsApp() {
+  var name = document.getElementById("name").value;
+  var mobile = document.getElementById("mobile").value;
+  var reg = document.getElementById("reg").value;
+  var model = document.getElementById("model").value;
+  var service = document.getElementById("service").value;
+  var location = document.getElementById("location").value.trim().toUpperCase();
 
-      if(!mobile || !reg) {
-        alert("Mobile number and Registration number are mandatory!");
-        return;
-      }
+  if(!mobile || !reg) {
+    alert("Mobile number and Registration number are mandatory!");
+    return;
+  }
 
-      // Location to WhatsApp number mapping
-      var phoneNumber = "9866881455"; // default
-      if(location === "SIRIPURAM") {
-        phoneNumber = "9866881455";
-      } else if(location === "YENDADA-2S") {
-        phoneNumber = "7032425909";
-      }
-      // add more else ifs for other locations later
+  // Choose number by location (for now same number)
+  var phoneNumber = "9866881455";
+  if(location === "YENDADA-2S") phoneNumber = "7032425909";
 
-      var msg = `*Vehicle Service Booking*%0A👤 Name: ${name}%0A📱 Mobile: ${mobile}%0A🚘 Reg No: ${reg}%0A🚙 Model: ${model}%0A🔧 Service: ${service}%0A📍 Location: ${location}`;
-      window.open(`https://wa.me/${phoneNumber}?text=${msg}`, "_blank");
-    }
-  </script>
+  var msg = `*Vehicle Service Booking*%0A👤 Name: ${name}%0A📱 Mobile: ${mobile}%0A🚘 Reg No: ${reg}%0A🚙 Model: ${model}%0A🔧 Service: ${service}%0A📍 Location: ${location}`;
+  window.open(`https://wa.me/${phoneNumber}?text=${msg}`, "_blank");
+}
+</script>
 </body>
 </html>
