@@ -24,10 +24,10 @@ header {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 header img.center-logo {
-  height: 50px;
+  height: 35px; /* ~30% smaller from 50px */
 }
 header img.side-logo {
-  height: 30px;
+  height: 40px; /* ~30% larger from 30px */
   margin: 0 8px;
 }
 .advert {
@@ -43,13 +43,13 @@ header img.side-logo {
 .swiper {
   width: 100%;
   max-width: 480px;
-  margin: auto;
+  margin: 10px auto; /* reduced top & bottom margin */
   border-radius: 10px;
 }
 .swiper-slide video, .swiper-slide img {
   width: 100%;
   height: auto;
-  max-height: 220px;
+  max-height: 240px; /* increased max height so less is cropped */
   object-fit: cover;
   border-radius: 8px;
 }
@@ -103,13 +103,13 @@ footer {
 /* Extra small devices tweaks */
 @media (max-width: 400px) {
   header img.center-logo {
-    height: 45px;
+    height: 30px;
   }
   header img.side-logo {
-    height: 25px;
+    height: 36px;
   }
   .swiper-slide video, .swiper-slide img {
-    max-height: 180px;
+    max-height: 200px;
   }
 }
 </style>
@@ -137,7 +137,6 @@ footer {
       <div class="swiper-slide"><img src="1.webp" alt="e-Vitara 1"></div>
       <div class="swiper-slide"><img src="2.jpg" alt="e-Vitara 2"></div>
     </div>
-    <!-- navigation arrows -->
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
@@ -154,7 +153,7 @@ footer {
     <input type="text" id="name" required>
 
     <label for="mobile">📱 Mobile Number *</label>
-    <input type="tel" id="mobile" pattern="[0-9]{10}" required placeholder="10-digit number">
+    <input type="tel" id="mobile" pattern="[0-9]{10}" maxlength="10" required placeholder="10-digit number">
 
     <label for="reg">🚘 Registration Number *</label>
     <input type="text" id="reg" required placeholder="e.g., AP01AB1234">
@@ -203,15 +202,19 @@ footer {
   });
 
 function sendWhatsApp() {
-  var name = document.getElementById("name").value;
-  var mobile = document.getElementById("mobile").value;
-  var reg = document.getElementById("reg").value;
-  var model = document.getElementById("model").value;
-  var service = document.getElementById("service").value;
+  var name = document.getElementById("name").value.trim();
+  var mobile = document.getElementById("mobile").value.trim();
+  var reg = document.getElementById("reg").value.trim();
+  var model = document.getElementById("model").value.trim();
+  var service = document.getElementById("service").value.trim();
   var location = document.getElementById("location").value.trim().toUpperCase();
 
-  if(!mobile || !reg) {
-    alert("Mobile number and Registration number are mandatory!");
+  if(mobile.length !== 10 || !/^[0-9]{10}$/.test(mobile)) {
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+  }
+  if(!reg) {
+    alert("Registration number is mandatory!");
     return;
   }
 
