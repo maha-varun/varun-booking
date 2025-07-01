@@ -20,39 +20,41 @@ header {
   align-items: center;
   justify-content: center;
   background: white;
-  padding: 0.5em;
+  padding: 0.3em;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 header img.center-logo {
-  height: 45px;
+  height: 50px;
 }
 header img.side-logo {
-  height: 40px;
-  margin: 0 10px;
+  height: 30px;
+  margin: 0 8px;
 }
 .advert {
   text-align: center;
   background: linear-gradient(135deg, #e00000, #ff7373);
   color: white;
-  padding: 1em 0;
+  padding: 0.8em 0;
 }
 .advert h2 {
-  margin: 0.5em 0;
-  font-size: 1.2em;
+  margin: 0.4em 0;
+  font-size: 1.1em;
 }
 .swiper {
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
   margin: auto;
   border-radius: 10px;
 }
 .swiper-slide video, .swiper-slide img {
   width: 100%;
-  height: 200px;
+  height: auto;
+  max-height: 220px;
   object-fit: cover;
+  border-radius: 8px;
 }
 .container {
-  max-width: 500px;
+  max-width: 480px;
   margin: 1em auto;
   background: white;
   padding: 1em;
@@ -66,18 +68,20 @@ form {
 label {
   font-weight: 500;
   margin-bottom: 0.3em;
+  font-size: 0.95em;
 }
 input, select {
-  margin-bottom: 1em;
+  margin-bottom: 0.9em;
   padding: 0.6em;
   border: 1px solid #ccc;
   border-radius: 6px;
+  font-size: 0.95em;
 }
 button {
   background: #25D366;
   color: white;
   padding: 0.7em;
-  font-size: 1.1em;
+  font-size: 1.05em;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -94,6 +98,19 @@ footer {
   padding: 0.8em;
   font-size: 0.9em;
   color: #555;
+}
+
+/* Extra small devices tweaks */
+@media (max-width: 400px) {
+  header img.center-logo {
+    height: 45px;
+  }
+  header img.side-logo {
+    height: 25px;
+  }
+  .swiper-slide video, .swiper-slide img {
+    max-height: 180px;
+  }
 }
 </style>
 </head>
@@ -178,7 +195,7 @@ footer {
 
 <script>
   var swiper = new Swiper('.swiper', {
-    loop: false, // stop auto loop
+    loop: false,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
