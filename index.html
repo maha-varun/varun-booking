@@ -3,237 +3,215 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maruti Suzuki - Varun Motors Service Booking</title>
-
-<!-- Swiper CSS -->
+<title>Varun Motors Service Booking</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-
 <style>
+:root {
+  --main-bg: linear-gradient(135deg, #141E30, #243B55);
+  --header-bg: rgba(0,0,0,0.6);
+  --container-bg: rgba(255,255,255,0.05);
+  --neon: #00FFF3;
+  --btn-bg: linear-gradient(90deg, #25d366, #128c7e);
+}
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: #f9f9f9;
-  color: #333;
+  margin:0; font-family:'Segoe UI', Tahoma, sans-serif;
+  background: var(--main-bg); color:#fff; min-height:100vh;
 }
+#particles-js { position:fixed; width:100%; height:100%; z-index:-1; }
 header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  padding: 0.3em;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display:flex; align-items:center; justify-content:space-between;
+  background: var(--header-bg); padding:0.5em;
 }
-header img.center-logo {
-  height: 28px; /* ~30% smaller from 50px */
+header img.center-logo { height:30px; }
+header img.side-logo { height:55px; margin:0 5px; }
+.options-button {
+  background:none; border:none; font-size:1.8em; color:#fff; cursor:pointer; margin-right:10px;
 }
-header img.side-logo {
-  height: 63px; /* ~60% larger from 30px */
-  margin: 0 8px;
+.options-menu {
+  position:absolute; top:50px; right:10px; background: var(--container-bg);
+  border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.4); display:none; z-index:10;
 }
-.advert {
-  text-align: center;
-  background: linear-gradient(135deg, #e00000, #ff7373);
-  color: white;
-  padding: 0.8em 0;
+.options-menu button {
+  background:none; border:none; padding:0.6em 1em; width:100%;
+  text-align:left; cursor:pointer; color:#fff;
 }
-.advert h2 {
-  margin: 0.4em 0;
-  font-size: 1.1em;
+.options-menu button:hover { background:rgba(255,255,255,0.1); }
+h2 {
+  text-align:center; margin:0.8em auto;
+  font-size:1.4em; color:var(--neon);
+  text-shadow:0 0 5px var(--neon),0 0 15px var(--neon);
 }
 .swiper {
-  width: 100%;
-  max-width: 480px;
-  margin: 10px auto; /* reduced top & bottom margin */
-  border-radius: 10px;
+  width:100%; max-width:480px; margin:10px auto; border-radius:10px; overflow:hidden;
 }
 .swiper-slide video, .swiper-slide img {
-  width: 100%;
-  height: auto;
-  max-height: 240px; /* increased max height so less is cropped */
-  object-fit: cover;
-  border-radius: 8px;
+  width:100%; max-height:240px; object-fit:cover;
 }
 .container {
-  max-width: 480px;
-  margin: 1em auto;
-  background: white;
-  padding: 1em;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  max-width:480px; margin:1em auto; background:var(--container-bg);
+  padding:1em; border-radius:10px; box-shadow:0 0 10px rgba(0,255,243,0.3);
 }
-form {
-  display: flex;
-  flex-direction: column;
+input, select, textarea {
+  width:100%; padding:0.7em; margin-bottom:1em;
+  background:rgba(255,255,255,0.1); border:none; border-radius:6px;
+  color:#fff; font-size:1em;
 }
-label {
-  font-weight: 500;
-  margin-bottom: 0.3em;
-  font-size: 0.95em;
-}
-input, select {
-  margin-bottom: 0.9em;
-  padding: 0.6em;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 0.95em;
-}
+.checkbox-group { display:flex; align-items:center; margin-bottom:1em; }
+.checkbox-group input { margin-right:0.5em; }
 button {
-  background: #25D366;
-  color: white;
-  padding: 0.7em;
-  font-size: 1.05em;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background:var(--btn-bg); color:#fff; border:none;
+  padding:0.8em; font-size:1em; border-radius:6px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
 }
-button img {
-  height: 20px;
-  margin-right: 6px;
+button img { height:20px; margin-right:6px; }
+footer { text-align:center; padding:1em; font-size:0.9em; color:#ccc; }
+.floating-buttons {
+  position:fixed; bottom:20px; right:20px; display:flex; flex-direction:column; gap:10px; z-index:20;
 }
-footer {
-  text-align: center;
-  padding: 0.8em;
-  font-size: 0.9em;
-  color: #555;
+.floating-buttons a {
+  width:50px; height:50px; border-radius:50%; color:white; font-size:1.5em;
+  display:flex; align-items:center; justify-content:center; text-decoration:none;
+  box-shadow:0 4px 10px rgba(0,0,0,0.4);
 }
-
-/* Extra small devices tweaks */
-@media (max-width: 400px) {
-  header img.center-logo {
-    height: 30px;
-  }
-  header img.side-logo {
-    height: 36px;
-  }
-  .swiper-slide video, .swiper-slide img {
-    max-height: 200px;
-  }
+.floating-buttons .whatsapp { background:#25d366; }
+.floating-buttons .call { background:#d00000; }
+.modal {
+  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.6); z-index:30; justify-content:center; align-items:center;
+}
+.modal-content {
+  background: var(--container-bg); padding:1em; border-radius:10px; width:90%; max-width:300px;
+}
+.modal-content select, .modal-content button {
+  width:100%; margin:0.5em 0;
 }
 </style>
 </head>
 <body>
+<div id="particles-js"></div>
 
 <header>
-  <img src="a.jpg" alt="Varun A Logo" class="side-logo">
-  <img src="m.png" alt="Maruti Suzuki Logo" class="center-logo">
-  <img src="n.webp" alt="Varun N Logo" class="side-logo">
+  <img src="a.jpg" class="side-logo">
+  <img src="m.png" class="center-logo">
+  <img src="n.webp" class="side-logo">
+  <button class="options-button" onclick="toggleMenu()">☰</button>
 </header>
 
-<div class="advert">
-  <h2>🚗✨ Introducing the New e-Vitara! ✨🚗</h2>
+<div class="options-menu" id="optionsMenu">
+  <button onclick="window.open('https://www.varunmaruti.com','_blank')">About Us</button>
+  <button onclick="window.open('https://t.ly/MjQHV','_blank')">Service Feedback</button>
+  <button onclick="showContactModal()">Contact Us</button>
+</div>
 
-  <!-- Swiper slider -->
-  <div class="swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <video controls>
-          <source src="ev.mp4" type="video/mp4">
-          Your browser does not support video.
-        </video>
-      </div>
-      <div class="swiper-slide"><img src="1.webp" alt="e-Vitara 1"></div>
-      <div class="swiper-slide"><img src="2.jpg" alt="e-Vitara 2"></div>
+<h2>🚗 Book Your Maruti Vehicle Service 🚗</h2>
+
+<!-- Swiper slider -->
+<div class="swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <video controls>
+        <source src="ev.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <div class="swiper-slide"><img src="1.webp" alt="e-Vitara 1"></div>
+    <div class="swiper-slide"><img src="2.jpg" alt="e-Vitara 2"></div>
   </div>
-
-  <p style="max-width:600px; margin:auto; font-size:1em;">
-    Experience the all-new electric Vitara! Eco-friendly 🌱, stylish 🏁, and packed with smart features.
-  </p>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
 </div>
 
 <div class="container">
-  <h2>🛠️ Book Your Vehicle Service</h2>
   <form id="serviceForm">
-    <label for="name">👤 Customer Name</label>
-    <input type="text" id="name" required>
-
-    <label for="mobile">📱 Mobile Number *</label>
-    <input
-  type="tel"
-  id="mobile"
-  inputmode="numeric"
-  pattern="[0-9]{10}"
-  maxlength="10"
-  required
-  placeholder="10-digit number"
-  oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-    
-    <label for="reg">🚘 Registration Number *</label>
-    <input type="text" id="reg" required placeholder="e.g., AP01AB1234">
-
-    <label for="model">🚙 Vehicle Model</label>
-    <input type="text" id="model" placeholder="e.g., Swift, Baleno">
-
-    <label for="service">🔧 Service Type</label>
+    <input type="text" id="name" placeholder="👤 Customer Name" required>
+    <input type="tel" id="mobile" maxlength="10" inputmode="numeric"
+     placeholder="📱 Mobile Number (10 digits)" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+    <input type="text" id="reg" maxlength="12"
+     placeholder="🚘 Registration Number (AP01AB1234)" oninput="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'')" required>
+    <input list="models" id="model" placeholder="🚙 Vehicle Model (e.g., Swift, Baleno)" required>
+    <datalist id="models">
+      <option>Swift</option><option>Baleno</option><option>Jimny</option>
+      <option>Invicto</option><option>Ciaz</option><option>Dzire</option>
+      <option>Alto</option><option>Fronx</option><option>Ertiga</option><option>XL6</option>
+    </datalist>
+    <input type="date" id="date" required min="">
     <select id="service" required>
-      <option value="">Select</option>
-      <option>General Service</option>
-      <option>Free Service</option>
-      <option>Paid Service</option>
-      <option>Repair</option>
-      <option>Body Shop</option>
+      <option value="">🔧 Select Service Type</option>
+      <option>General Service</option><option>Free Service</option>
+      <option>Paid Service</option><option>Repair</option><option>Body Shop</option>
     </select>
-
-    <label for="location">📍 Location</label>
-    <input list="locations" id="location" required placeholder="Start typing...">
-    <datalist id="locations">
+    <select id="location" required>
+      <option value="">📍 Select Location</option>
       <option>SIRIPURAM</option>
       <option>YENDADA-2S</option>
       <option>GAJUWAKA</option>
       <option>VISHAKHAPATNAM-2S(NEXA)</option>
       <option>VIZIANAGARAM-SRV</option>
-    </datalist>
-
+    </select>
+    <div class="checkbox-group">
+      <input type="checkbox" id="pickup"> <label for="pickup">🚚 Free Pick & Drop</label>
+    </div>
+    <textarea id="suggestions" placeholder="💬 Any suggestions or requests..."></textarea>
     <button type="button" onclick="sendWhatsApp()">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"> Send to WhatsApp
     </button>
   </form>
 </div>
 
+<div class="floating-buttons">
+  <a href="#" class="whatsapp" onclick="sendWhatsApp()">✉</a>
+  <a href="#" class="call" onclick="showContactModal()">📞</a>
+</div>
+
 <footer>© 2025 Varun Motors Pvt Ltd | Designed by Shareef</footer>
 
-<!-- Swiper JS -->
+<!-- Contact modal -->
+<div class="modal" id="contactModal">
+  <div class="modal-content">
+    <select id="contactLocation">
+      <option value="">📍 Select Location to Call</option>
+      <option value="SIRIPURAM">SIRIPURAM</option>
+      <option value="YENDADA-2S">YENDADA-2S</option>
+      <option value="GAJUWAKA">GAJUWAKA</option>
+      <option value="VISHAKHAPATNAM-2S(NEXA)">VISHAKHAPATNAM-2S(NEXA)</option>
+      <option value="VIZIANAGARAM-SRV">VIZIANAGARAM-SRV</option>
+    </select>
+    <button onclick="makeCall()">📞 Call</button>
+    <button onclick="closeContactModal()">❌ Cancel</button>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
 <script>
-  var swiper = new Swiper('.swiper', {
-    loop: false,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
+document.getElementById("date").min=new Date().toISOString().split("T")[0];
 
-function sendWhatsApp() {
-  var name = document.getElementById("name").value.trim();
-  var mobile = document.getElementById("mobile").value.trim();
-  var reg = document.getElementById("reg").value.trim();
-  var model = document.getElementById("model").value.trim();
-  var service = document.getElementById("service").value.trim();
-  var location = document.getElementById("location").value.trim().toUpperCase();
+var swiper = new Swiper('.swiper', { loop:false, navigation:{nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev'} });
 
-  if(mobile.length !== 10 || !/^[0-9]{10}$/.test(mobile)) {
-    alert("Please enter a valid 10-digit mobile number.");
-    return;
-  }
-  if(!reg) {
-    alert("Registration number is mandatory!");
-    return;
-  }
+function toggleMenu(){ let m=document.getElementById('optionsMenu'); m.style.display= m.style.display==='block'?'none':'block'; }
 
-  var phoneNumber = "9866881455";
-  if(location === "YENDADA-2S") phoneNumber = "7032425909";
-
-  var msg = `*Vehicle Service Booking*%0A👤 Name: ${name}%0A📱 Mobile: ${mobile}%0A🚘 Reg No: ${reg}%0A🚙 Model: ${model}%0A🔧 Service: ${service}%0A📍 Location: ${location}`;
-  window.open(`https://wa.me/${phoneNumber}?text=${msg}`, "_blank");
-
-  // ✅ Reset form after submission
+function sendWhatsApp(){
+  let name=document.getElementById("name").value.trim();
+  let mobile=document.getElementById("mobile").value.trim();
+  let reg=document.getElementById("reg").value.trim().toUpperCase();
+  let model=document.getElementById("model").value.trim();
+  let date=document.getElementById("date").value;
+  let service=document.getElementById("service").value.trim();
+  let location=document.getElementById("location").value.trim();
+  let pickup=document.getElementById("pickup").checked?"Yes":"No";
+  let suggestions=document.getElementById("suggestions").value.trim();
+  if(mobile.length!==10){alert("Enter 10-digit mobile");return;}
+  let phone="9866881455"; if(location==="YENDADA-2S") phone="7032425909";
+  let msg=`*Vehicle Service Booking*\n👤 Name: ${name}\n📱 Mobile: ${mobile}\n🚘 Reg: ${reg}\n🚙 Model: ${model}\n📅 Date: ${date}\n🔧 Service: ${service}\n📍 Location: ${location}\n🚚 Pick & Drop: ${pickup}\n💬 Suggestions: ${suggestions}`;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
   document.getElementById("serviceForm").reset();
+}
+function showContactModal(){ document.getElementById("contactModal").style.display="flex"; }
+function closeContactModal(){ document.getElementById("contactModal").style.display="none"; }
+function makeCall(){
+  let loc=document.getElementById("contactLocation").value;
+  let phone="9866881455"; if(loc==="YENDADA-2S") phone="7032425909";
+  if(loc) window.location.href=`tel:${phone}`;
+  closeContactModal();
 }
 </script>
 </body>
