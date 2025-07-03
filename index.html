@@ -8,8 +8,8 @@
 <style>
 :root {
   --main-bg: linear-gradient(135deg, #141E30, #243B55);
-  --header-bg: rgba(0,0,0,0.6);
-  --container-bg: rgba(255,255,255,0.05);
+  --header-bg: rgba(0,0,0,0.7);
+  --container-bg: rgba(255,255,255,0.07);
   --neon: #00FFF3;
   --btn-bg: linear-gradient(90deg, #25d366, #128c7e);
 }
@@ -20,16 +20,23 @@ body {
 #particles-js { position:fixed; width:100%; height:100%; z-index:-1; }
 header {
   display:flex; align-items:center; justify-content:space-between;
-  background: var(--header-bg); padding:0.6em;
+  background: var(--header-bg); padding:0.5em;
 }
-header img.center-logo { height:36px; }
-header img.side-logo { height:41px; margin:0 7px; }
+header img.center-logo { height:30px; }
+header img.side-logo { height:55px; margin:0 5px; }
 .options-button {
   background:none; border:none; font-size:1.8em; color:#fff; cursor:pointer; margin-right:10px;
 }
+/* Improved styling for options menu */
 .options-menu {
-  position:absolute; top:50px; right:10px; background: var(--container-bg);
-  border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.4); display:none; z-index:10;
+  position: absolute; 
+  top: 50px; 
+  right: 10px; 
+  background: rgba(0, 0, 0, 0.7); /* Darker background */
+  padding: 12px; /* More padding for better spacing */
+  border-radius: 8px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Added shadow for depth */
+  display: none;
 }
 .options-menu button {
   background:none; border:none; padding:0.6em 1em; width:100%;
@@ -52,9 +59,22 @@ h2 {
   padding:1em; border-radius:10px; box-shadow:0 0 10px rgba(0,255,243,0.3);
 }
 input, select, textarea {
-  width:100%; padding:0.7em; margin-bottom:1em;
-  background:rgba(255,255,255,0.1); border:none; border-radius:6px;
-  color:#fff; font-size:1em;
+  width: 100%;
+  padding: 0.7em;
+  margin-bottom: 1em;
+  background: rgba(255, 255, 255, 0.9); /* More opaque background */
+  border: none;
+  border-radius: 6px;
+  color: #000; /* Dark text color */
+  font-size: 1em;
+}
+select:focus {
+  outline: none; /* Optional: removes the blue border when focusing */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.7); /* Optional: adds a focus effect */
+}
+option {
+  color: #000; /* Dark color for the option text */
+  background: rgba(255, 255, 255, 0.9); /* White background with some opacity */
 }
 .checkbox-group { display:flex; align-items:center; margin-bottom:1em; }
 .checkbox-group input { margin-right:0.5em; }
@@ -93,9 +113,9 @@ footer { text-align:center; padding:1em; font-size:0.9em; color:#ccc; }
 <header>
   <img src="a.jpg" class="side-logo">
   <img src="m.png" class="center-logo">
+  <img src="n.webp" class="side-logo">
   <button class="options-button" onclick="toggleMenu()">☰</button>
 </header>
-
 <div class="options-menu" id="optionsMenu">
   <button onclick="window.open('https://www.varunmaruti.com','_blank')">About Us</button>
   <button onclick="window.open('https://t.ly/MjQHV','_blank')">Service Feedback</button>
@@ -133,7 +153,8 @@ footer { text-align:center; padding:1em; font-size:0.9em; color:#ccc; }
       <option>Invicto</option><option>Ciaz</option><option>Dzire</option>
       <option>Alto</option><option>Fronx</option><option>Ertiga</option><option>XL6</option>
     </datalist>
-    <input type="date" id="date" required min="">
+	<label for="date" style="color: #ccc;">📅 Servicing Date</label>
+	<input type="date" id="date" required min="">
     <select id="service" required>
       <option value="">🔧 Select Service Type</option>
       <option>General Service</option><option>Free Service</option>
@@ -204,7 +225,7 @@ footer { text-align:center; padding:1em; font-size:0.9em; color:#ccc; }
   <a href="#" class="call" onclick="showContactModal()">📞</a>
 </div>
 
-<footer>© 2025 Varun Motors Pvt Ltd | Designed by Shareef</footer>
+<footer>© 2025 Varun Motors Pvt Ltd | Designed by Maha </footer>
 
 <!-- Contact modal -->
 <div class="modal" id="contactModal">
@@ -263,15 +284,11 @@ footer { text-align:center; padding:1em; font-size:0.9em; color:#ccc; }
     <button onclick="closeContactModal()">❌ Cancel</button>
   </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
 document.getElementById("date").min=new Date().toISOString().split("T")[0];
-
 var swiper = new Swiper('.swiper', { loop:false, navigation:{nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev'} });
-
 function toggleMenu(){ let m=document.getElementById('optionsMenu'); m.style.display= m.style.display==='block'?'none':'block'; }
-
 function sendWhatsApp(){
   let name=document.getElementById("name").value.trim();
   let mobile=document.getElementById("mobile").value.trim();
@@ -283,7 +300,54 @@ function sendWhatsApp(){
   let pickup=document.getElementById("pickup").checked?"Yes":"No";
   let suggestions=document.getElementById("suggestions").value.trim();
   if(mobile.length!==10){alert("Enter 10-digit mobile");return;}
-  let phone="9866881455"; if(location==="YENDADA-2S") phone="7032425909";
+  let phone="+91 9599571302";
+      if (location === "SIRIPURAM") phone = "+91 9642225145";
+      if (location === "100FT RING ROAD-2S") phone = "+91 9885681045";
+      if (location === "ADAVIVARAM-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "AGANAMPUDI-SRV") phone = "+91 9885681045";
+      if (location === "ANNAVARAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "ARAKU VALLEY-3S(RO)") phone = "+91 9885681045";
+      if (location === "BALAJI NAGAR-SOW(NEXA)") phone = "+91 9885681045";
+      if (location === "BOBBILLI-R(3S)") phone = "+91 9885681045";
+      if (location === "BRTS ROAD-2S") phone = "+91 9885681045";
+      if (location === "CHALAMAYYA NAGAR-SOW") phone = "+91 9885681045";
+      if (location === "CHINNA WALTAIR-SRV") phone = "+91 9885681045";
+      if (location === "CHODAVARAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "DRAKSHARAMAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "GAJUWAKA") phone = "+91 9885681045";
+      if (location === "GOVADA VILLAGE-SRV") phone = "+91 9885681045";
+      if (location === "KAKINADA-2S") phone = "+91 9885681045";
+      if (location === "KAPPARADA-SRV") phone = "+91 9885681045";
+      if (location === "KORUKONDA-3S(RO)") phone = "+91 9885681045";
+      if (location === "KOTAPADU-3S(RO)") phone = "+91 9885681045";
+      if (location === "KURUPAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "MADHURAWADA VILLAGE-SRV") phone = "+91 9885681045";
+      if (location === "MALKIPURAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "MARRIPALEM-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "NAKKAPALLI-3S(RO)") phone = "+91 9885681045";
+      if (location === "NH-5 ROAD") phone = "+91 9885681045";
+      if (location === "PALACHARLA VILLAGE-2S") phone = "+91 9885681045";
+      if (location === "PALAKONDA-3S(RO)") phone = "+91 9885681045";
+      if (location === "PATHAPATNAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "PEADDAPADU PANCHAYAT-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "PEDAPADU ROAD-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "PEDDA PADDU ROAD - SRV") phone = "+91 9885681045";
+      if (location === "PEDDAPURAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "PENDURTHI-2S(STUDIO)") phone = "+91 9885681045";
+      if (location === "PENDURTHI-SRV") phone = "+91 9885681045";
+      if (location === "PUSPATIREGA-SRV") phone = "+91 9885681045";
+      if (location === "RAJAM-SRV") phone = "+91 9885681045";
+      if (location === "RAMPACHODAVARAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "SALUR-3S(RO)") phone = "+91 9885681045";
+      if (location === "SOMPETA-3S(RO)") phone = "+91 9885681045";
+      if (location === "TATIPAKA-MSSSP") phone = "+91 9885681045";
+      if (location === "TEKKALI-3S(RO)") phone = "+91 9885681045";
+      if (location === "THAGARAPUVALASA-R(3S)") phone = "+91 9885681045";
+      if (location === "VISHAKHAPATNAM-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "VISHAKHAPATNAM-SRV") phone = "+91 9885681045";
+      if (location === "VIZIANAGARAM-SRV") phone = "+91 9885681045";
+      if (location === "YELESWARAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "YENDADA-2S") phone = "+91 9866881455";
   let msg=`*Vehicle Service Booking*\n👤 Name: ${name}\n📱 Mobile: ${mobile}\n🚘 Reg: ${reg}\n🚙 Model: ${model}\n📅 Date: ${date}\n🔧 Service: ${service}\n📍 Location: ${location}\n🚚 Pick & Drop: ${pickup}\n💬 Suggestions: ${suggestions}`;
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
   document.getElementById("serviceForm").reset();
@@ -291,56 +355,56 @@ function sendWhatsApp(){
 function showContactModal(){ document.getElementById("contactModal").style.display="flex"; }
 function closeContactModal(){ document.getElementById("contactModal").style.display="none"; }
 function makeCall(){
-  let loc=document.getElementById("contactLocation").value;
-      let phone = "9866881455"; // Default phone number
-      if (location === "SIRIPURAM") phone = "962225145";
-      if (location === "100FT RING ROAD-2S") phone = "9885681045";
-      if (location === "ADAVIVARAM-2S(NEXA)") phone = "9885681045";
-      if (location === "AGANAMPUDI-SRV") phone = "9885681045";
-      if (location === "ANNAVARAM-3S(RO)") phone = "9885681045";
-      if (location === "ARAKU VALLEY-3S(RO)") phone = "9885681045";
-      if (location === "BALAJI NAGAR-SOW(NEXA)") phone = "9885681045";
-      if (location === "BOBBILLI-R(3S)") phone = "9885681045";
-      if (location === "BRTS ROAD-2S") phone = "9885681045";
-      if (location === "CHALAMAYYA NAGAR-SOW") phone = "9885681045";
-      if (location === "CHINNA WALTAIR-SRV") phone = "9885681045";
-      if (location === "CHODAVARAM-3S(RO)") phone = "9885681045";
-      if (location === "DRAKSHARAMAM-3S(RO)") phone = "9885681045";
-      if (location === "GAJUWAKA") phone = "9885681045";
-      if (location === "GOVADA VILLAGE-SRV") phone = "9885681045";
-      if (location === "KAKINADA-2S") phone = "9885681045";
-      if (location === "KAPPARADA-SRV") phone = "9885681045";
-      if (location === "KORUKONDA-3S(RO)") phone = "9885681045";
-      if (location === "KOTAPADU-3S(RO)") phone = "9885681045";
-      if (location === "KURUPAM-3S(RO)") phone = "9885681045";
-      if (location === "MADHURAWADA VILLAGE-SRV") phone = "9885681045";
-      if (location === "MALKIPURAM-3S(RO)") phone = "9885681045";
-      if (location === "MARRIPALEM-2S(NEXA)") phone = "9885681045";
-      if (location === "NAKKAPALLI-3S(RO)") phone = "9885681045";
-      if (location === "NH-5 ROAD") phone = "9885681045";
-      if (location === "PALACHARLA VILLAGE-2S") phone = "9885681045";
-      if (location === "PALAKONDA-3S(RO)") phone = "9885681045";
-      if (location === "PATHAPATNAM-3S(RO)") phone = "9885681045";
-      if (location === "PEADDAPADU PANCHAYAT-2S(NEXA)") phone = "9885681045";
-      if (location === "PEDAPADU ROAD-2S(NEXA)") phone = "9885681045";
-      if (location === "PEDDA PADDU ROAD - SRV") phone = "9885681045";
-      if (location === "PEDDAPURAM-3S(RO)") phone = "9885681045";
-      if (location === "PENDURTHI-2S(STUDIO)") phone = "9885681045";
-      if (location === "PENDURTHI-SRV") phone = "9885681045";
-      if (location === "PUSPATIREGA-SRV") phone = "9885681045";
-      if (location === "RAJAM-SRV") phone = "9885681045";
-      if (location === "RAMPACHODAVARAM-3S(RO)") phone = "9885681045";
-      if (location === "SALUR-3S(RO)") phone = "9885681045";
-      if (location === "SOMPETA-3S(RO)") phone = "9885681045";
-      if (location === "TATIPAKA-MSSSP") phone = "9885681045";
-      if (location === "TEKKALI-3S(RO)") phone = "9885681045";
-      if (location === "THAGARAPUVALASA-R(3S)") phone = "9885681045";
-      if (location === "VISHAKHAPATNAM-2S(NEXA)") phone = "9885681045";
-      if (location === "VISHAKHAPATNAM-SRV") phone = "9885681045";
-      if (location === "VIZIANAGARAM-SRV") phone = "9885681045";
-      if (location === "YELESWARAM-3S(RO)") phone = "9885681045";
-      if (location === "YENDADA-2S") phone = "9885681045";
-  if(loc) window.location.href=`tel:${phone}`;
+  let location=document.getElementById("contactLocation").value;
+      let phone = "+91 9885681045"; // Default phone number
+      if (location === "SIRIPURAM") phone = "+91 962225145";
+      if (location === "100FT RING ROAD-2S") phone = "+91 9885681045";
+      if (location === "ADAVIVARAM-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "AGANAMPUDI-SRV") phone = "+91 9885681045";
+      if (location === "ANNAVARAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "ARAKU VALLEY-3S(RO)") phone = "+91 9885681045";
+      if (location === "BALAJI NAGAR-SOW(NEXA)") phone = "+91 9885681045";
+      if (location === "BOBBILLI-R(3S)") phone = "+91 9885681045";
+      if (location === "BRTS ROAD-2S") phone = "+91 9885681045";
+      if (location === "CHALAMAYYA NAGAR-SOW") phone = "+91 9885681045";
+      if (location === "CHINNA WALTAIR-SRV") phone = "+91 9885681045";
+      if (location === "CHODAVARAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "DRAKSHARAMAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "GAJUWAKA") phone = "+91 9885681045";
+      if (location === "GOVADA VILLAGE-SRV") phone = "+91 9885681045";
+      if (location === "KAKINADA-2S") phone = "+91 9885681045";
+      if (location === "KAPPARADA-SRV") phone = "+91 9885681045";
+      if (location === "KORUKONDA-3S(RO)") phone = "+91 9885681045";
+      if (location === "KOTAPADU-3S(RO)") phone = "+91 9885681045";
+      if (location === "KURUPAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "MADHURAWADA VILLAGE-SRV") phone = "+91 9885681045";
+      if (location === "MALKIPURAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "MARRIPALEM-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "NAKKAPALLI-3S(RO)") phone = "+91 9885681045";
+      if (location === "NH-5 ROAD") phone = "+91 9885681045";
+      if (location === "PALACHARLA VILLAGE-2S") phone = "+91 9885681045";
+      if (location === "PALAKONDA-3S(RO)") phone = "+91 9885681045";
+      if (location === "PATHAPATNAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "PEADDAPADU PANCHAYAT-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "PEDAPADU ROAD-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "PEDDA PADDU ROAD - SRV") phone = "+91 9885681045";
+      if (location === "PEDDAPURAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "PENDURTHI-2S(STUDIO)") phone = "+91 9885681045";
+      if (location === "PENDURTHI-SRV") phone = "+91 9885681045";
+      if (location === "PUSPATIREGA-SRV") phone = "+91 9885681045";
+      if (location === "RAJAM-SRV") phone = "+91 9885681045";
+      if (location === "RAMPACHODAVARAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "SALUR-3S(RO)") phone = "+91 9885681045";
+      if (location === "SOMPETA-3S(RO)") phone = "+91 9885681045";
+      if (location === "TATIPAKA-MSSSP") phone = "+91 9885681045";
+      if (location === "TEKKALI-3S(RO)") phone = "+91 9885681045";
+      if (location === "THAGARAPUVALASA-R(3S)") phone = "+91 9885681045";
+      if (location === "VISHAKHAPATNAM-2S(NEXA)") phone = "+91 9885681045";
+      if (location === "VISHAKHAPATNAM-SRV") phone = "+91 9885681045";
+      if (location === "VIZIANAGARAM-SRV") phone = "+91 9885681045";
+      if (location === "YELESWARAM-3S(RO)") phone = "+91 9885681045";
+      if (location === "YENDADA-2S") phone = "+91 7799155347";
+  if(location) window.location.href=`tel:${phone}`;
   closeContactModal();
 }
 </script>
